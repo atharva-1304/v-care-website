@@ -12,7 +12,8 @@ export default function DemoRequestForm() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const data = new FormData(form);
     setIsSubmitting(true);
     setStatus("");
 
@@ -32,7 +33,7 @@ export default function DemoRequestForm() {
 
       if (!response.ok) throw new Error(result.error);
 
-      event.currentTarget.reset();
+      form.reset();
       setStatus("Thanks—your demo request has been sent. We’ll reply soon.");
     } catch (error) {
       setStatus(error.message || "We could not send your request. Please try again.");
