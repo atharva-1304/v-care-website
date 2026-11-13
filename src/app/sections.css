@@ -1,4 +1,42 @@
 .how-it-works { border-top: 1px solid rgba(18, 49, 74, 0.7); }
+
+html { scrollbar-color: #087fc4 #050d16; scrollbar-width: thin; }
+::-webkit-scrollbar { width: 0.7rem; }
+::-webkit-scrollbar-track { border-left: 1px solid #12314a; background: #050d16; }
+::-webkit-scrollbar-thumb { border: 2px solid #050d16; border-radius: 999px; background: linear-gradient(#45b8ff, #087fc4); }
+::-webkit-scrollbar-thumb:hover { background: #45b8ff; }
+
+@media (pointer: fine) {
+  body { cursor: url("/cursor-vcare.svg") 5 4, default; }
+  a, button, summary, select { cursor: pointer; }
+  input, textarea { cursor: text; }
+}
+
+.challenge-intro { max-width: 46rem; }
+.challenge-grid-animated { margin-top: 2.75rem; }
+.challenge-grid-animated article { display: block; min-height: 23rem; padding: 1.35rem; background: linear-gradient(145deg, rgba(10, 30, 48, 0.82), var(--section)); }
+.challenge-grid-animated article::after { display: none; }
+.challenge-card-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.challenge-icon { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid rgba(69, 184, 255, 0.38); border-radius: 0.7rem; background: rgba(8, 127, 196, 0.14); color: var(--accent); font-size: 1.25rem; }
+.challenge-grid-animated .card-number { padding-top: 0.35rem; }
+.mini-visual { position: relative; overflow: hidden; height: 5.3rem; margin-top: 1.4rem; border: 1px solid rgba(18, 49, 74, 0.85); border-radius: 0.65rem; background: rgba(2, 7, 13, 0.42); }
+.mini-visual::before { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(69, 184, 255, 0.05) 1px, transparent 1px), linear-gradient(rgba(69, 184, 255, 0.05) 1px, transparent 1px); background-size: 1rem 1rem; content: ""; }
+.mini-nodes i, .mini-nodes b { position: absolute; z-index: 1; width: 0.62rem; height: 0.62rem; border: 2px solid var(--accent); border-radius: 50%; background: var(--panel); }
+.mini-nodes i:nth-child(1) { top: 1.1rem; left: 18%; }
+.mini-nodes i:nth-child(2) { top: 2.8rem; left: 46%; }
+.mini-nodes i:nth-child(3) { top: 1.15rem; left: 72%; }
+.mini-nodes b { width: 29%; height: 1px; border: 0; border-radius: 0; background: linear-gradient(90deg, rgba(69, 184, 255, 0.05), var(--accent)); transform-origin: left; }
+.mini-nodes b:nth-of-type(1) { top: 2rem; left: 22%; transform: rotate(25deg); }
+.mini-nodes b:nth-of-type(2) { top: 3.25rem; left: 50%; transform: rotate(-27deg); }
+.mini-timeline i { position: absolute; z-index: 1; top: 2.2rem; width: 0.75rem; height: 0.75rem; border: 2px solid #f59e0b; border-radius: 50%; background: var(--panel); }
+.mini-timeline i:nth-child(1) { left: 19%; }.mini-timeline i:nth-child(2) { left: 46%; }.mini-timeline i:nth-child(3) { left: 73%; }
+.mini-timeline span { position: absolute; z-index: 0; top: 2.55rem; right: 19%; left: 19%; height: 1px; background: linear-gradient(90deg, rgba(245, 158, 11, 0.25), #f59e0b, rgba(245, 158, 11, 0.25)); }
+.mini-bars { display: flex; align-items: end; justify-content: center; gap: 0.5rem; padding-bottom: 1rem; }
+.mini-bars i { position: relative; z-index: 1; width: 0.9rem; border-radius: 0.25rem 0.25rem 0 0; background: linear-gradient(#45b8ff, rgba(8, 127, 196, 0.28)); }
+.mini-bars i:nth-child(1) { height: 1.4rem; }.mini-bars i:nth-child(2) { height: 2.7rem; }.mini-bars i:nth-child(3) { height: 2rem; }.mini-bars i:nth-child(4) { height: 3.65rem; }
+.challenge-label { margin: 1.4rem 0 0 !important; color: var(--accent) !important; font-size: 0.64rem !important; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.challenge-grid-animated h3 { margin: 0.7rem 0 0.65rem; }
+
 .workflow-list { margin-top: 2.5rem; border-top: 1px solid var(--border); }
 .workflow-list article { display: grid; grid-template-columns: 5rem minmax(13rem, 1fr) minmax(17rem, 0.9fr); gap: 1.5rem; align-items: center; padding: 1.6rem 0; border-bottom: 1px solid var(--border); }
 .workflow-number { color: var(--accent); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.12em; }
@@ -19,12 +57,14 @@
 .demo-form input::placeholder, .demo-form textarea::placeholder { color: #5e7890; }
 .demo-form input:focus, .demo-form textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(69, 184, 255, 0.14); }
 .demo-form .button { width: 100%; margin-top: 0.25rem; cursor: pointer; }
+.demo-form .button:disabled { cursor: wait; opacity: 0.7; transform: none; }
+.honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .form-note, .form-status { margin: 0; font-size: 0.72rem; line-height: 1.5; }
 .form-note { color: var(--muted); }
 .form-status { color: #6ee7b7; }
 
 .site-footer { position: relative; overflow: hidden; padding: 0 2rem 1.5rem; background: #030a12; border-top: 1px solid var(--border); }
-.footer-wordmark { width: min(100%, 88rem); margin: -0.05em auto -0.24em; color: #5bbdfa; font-size: clamp(5.2rem, 19vw, 16rem); font-weight: 800; line-height: 0.78; letter-spacing: -0.11em; text-align: center; opacity: 0.42; -webkit-mask-image: linear-gradient(to bottom, #000 20%, transparent 100%); mask-image: linear-gradient(to bottom, #000 20%, transparent 100%); }
+.footer-wordmark { width: min(100%, 88rem); margin: -0.05em auto -0.18em; color: #5bbdfa; font-size: clamp(5.2rem, 19vw, 16rem); font-weight: 800; line-height: 0.78; letter-spacing: -0.035em; text-align: center; opacity: 0.42; -webkit-mask-image: linear-gradient(to bottom, #000 20%, transparent 100%); mask-image: linear-gradient(to bottom, #000 20%, transparent 100%); }
 .footer-content { display: grid; grid-template-columns: 1.5fr 1fr 0.7fr; gap: 2rem; width: min(100%, 75rem); margin: 2rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(18, 49, 74, 0.72); }
 .footer-content p:not(.eyebrow) { max-width: 20rem; margin: 0.8rem 0 0; color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
 .footer-content h2 { margin: 0 0 0.8rem; font-size: 0.82rem; }
@@ -33,6 +73,7 @@
 .footer-bottom { width: min(100%, 75rem); margin: 3rem auto 0; color: #587087; font-size: 0.7rem; }
 
 @media (max-width: 760px) {
+  .challenge-grid-animated article { min-height: auto; }
   .workflow-list article { grid-template-columns: 2.8rem 1fr; gap: 0.8rem; }
   .workflow-description { grid-column: 2; }
   .demo-section { grid-template-columns: 1fr; }

@@ -32,7 +32,7 @@ export default function Home() {
         <div className="footer-wordmark" aria-hidden="true">V-CARE</div>
         <div className="footer-content">
           <div><p className="eyebrow">Vehicle customer care &amp; CRM</p><p>Clearer dealership operations, one connected desktop workspace at a time.</p></div>
-          <div><h2>Contact</h2><a href="mailto:vcare.otpnoreply@gmail.com">vcare.otpnoreply@gmail.com</a></div>
+          <div><h2>Contact</h2><a href="mailto:vcarecrm.support@gmail.com">vcarecrm.support@gmail.com</a></div>
           <div><h2>Explore</h2><a href="#product">Product</a><a href="#features">Features</a><a href="#how-it-works">How it works</a></div>
         </div>
         <p className="footer-bottom">© 2026 V-Care. Product website.</p>

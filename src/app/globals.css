@@ -21,6 +21,8 @@
 
 body {
   margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
   background: var(--page);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
@@ -30,7 +32,7 @@ body {
   isolation: isolate;
   position: relative;
   min-height: 100vh;
-  overflow: clip;
+  overflow: visible;
   padding: 0 2rem;
   background:
     linear-gradient(180deg, rgba(2, 7, 13, 0.68), var(--page)),
@@ -38,13 +40,23 @@ body {
 }
 
 .hero-glow {
-  position: absolute;
-  z-index: -1;
-  width: min(70vw, 60rem);
+  position: fixed;
+  z-index: 0;
+  top: 10vh;
+  left: 50%;
+  width: min(76vw, 68rem);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(8, 127, 196, 0.28), transparent 67%);
-  filter: blur(18px);
+  background: radial-gradient(circle, rgba(8, 127, 196, 0.22), rgba(8, 127, 196, 0.06) 36%, transparent 68%);
+  filter: blur(24px);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.site-shell > section,
+.site-shell > footer {
+  position: relative;
+  z-index: 1;
 }
 
 .hero,

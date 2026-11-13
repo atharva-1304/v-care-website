@@ -3,24 +3,42 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
-const recipient = "vcare.otpnoreply@gmail.com";
+const recipient = "vcarecrm.support@gmail.com";
 
 export default function DemoRequestForm() {
   const [status, setStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const reduceMotion = useReducedMotion();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const name = data.get("name");
-    const contact = data.get("contact");
-    const email = data.get("email");
-    const message = data.get("message");
-    const subject = `V-Care demo request from ${name}`;
-    const body = `Name: ${name}\nContact number: ${contact}\nEmail: ${email}\n\nMessage:\n${message}`;
+    setIsSubmitting(true);
+    setStatus("");
 
-    setStatus("Opening your email app with this request pre-filled.");
-    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch("/api/demo-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          contact: data.get("contact"),
+          email: data.get("email"),
+          message: data.get("message"),
+          website: data.get("website"),
+        }),
+      });
+      const result = await response.json();
+
+      if (!response.ok) throw new Error(result.error);
+
+      event.currentTarget.reset();
+      setStatus("Thanks—your demo request has been sent. We’ll reply soon.");
+    } catch (error) {
+      setStatus(error.message || "We could not send your request. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -46,12 +64,13 @@ export default function DemoRequestForm() {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.08, ease: "easeOut" }}
       >
+        <label className="honeypot" aria-hidden="true">Website<input name="website" tabIndex="-1" autoComplete="off" /></label>
         <label>Name<input name="name" autoComplete="name" required placeholder="Your name" /></label>
         <label>Contact number<input name="contact" autoComplete="tel" inputMode="tel" required placeholder="Your phone number" /></label>
         <label>Email address<input name="email" type="email" autoComplete="email" required placeholder="you@dealership.com" /></label>
         <label>How can we help?<textarea name="message" required rows="4" placeholder="Tell us about your dealership or what you would like to see." /></label>
-        <button className="button button-primary" type="submit">Continue to email <span aria-hidden="true">→</span></button>
-        <p className="form-note">This opens your email app with the request pre-filled. Direct form delivery will be enabled after email service setup.</p>
+        <button className="button button-primary" type="submit" disabled={isSubmitting}>{isSubmitting ? "Sending request…" : "Send demo request"} <span aria-hidden="true">→</span></button>
+        <p className="form-note">Your request is sent directly to the V-Care team. We&apos;ll reply to the email address you provide.</p>
         {status && <p className="form-status" role="status">{status}</p>}
       </motion.form>
     </section>
