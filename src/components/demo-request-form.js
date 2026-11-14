@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
-const recipient = "vcarecrm.support@gmail.com";
-
 export default function DemoRequestForm() {
   const [status, setStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,7 +52,6 @@ export default function DemoRequestForm() {
         <p className="eyebrow">Book a demo</p>
         <h2 id="demo-title">See V-Care in your dealership workflow.</h2>
         <p>Tell us a little about your dealership and we&apos;ll help arrange a product conversation.</p>
-        <a href={`mailto:${recipient}`}>{recipient}</a>
       </motion.div>
 
       <motion.form
